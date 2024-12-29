@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ismael & Gabriele - Músicos para Casamentos e Eventos</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <!-- Incluindo o SDK do EmailJS -->
+    <script
+      type="text/javascript"
+      src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">Ismael & Gabriele</div>
+        <ul class="nav-links">
+          <li><a href="#home">Início</a></li>
+          <li><a href="#services">Serviços</a></li>
+          <li><a href="#about">Sobre</a></li>
+          <li><a href="#contact">Contato</a></li>
+        </ul>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home" class="hero">
+        <div class="hero-content">
+          <h1>Música para Seu Evento</h1>
+          <p>
+            Transforme seu casamento, festa ou evento privado com música ao vivo
+            de qualidade.
+          </p>
+          <a href="#contact" class="cta-button">Quero Mais Informações</a>
+        </div>
+
+        <!-- Pétalas Caindo -->
+        <div class="petal petal1"></div>
+        <div class="petal petal2"></div>
+        <div class="petal petal3"></div>
+        <div class="petal petal4"></div>
+        <div class="petal petal5"></div>
+      </section>
+
+      <section id="services" class="services">
+        <h2>Nossos Serviços</h2>
+        <div class="service-grid">
+          <div class="service-card">
+            <img src="./images/guitar.jpg" alt="Violão e Guitarra" />
+            <h3>Violão e Guitarra</h3>
+            <p>
+              Ismael toca violão e guitarra com maestria, criando a atmosfera
+              perfeita para seu evento.
+            </p>
+          </div>
+          <div class="service-card">
+            <img src="./images/drums.webp" alt="Bateria" />
+            <h3>Bateria</h3>
+            <p>
+              Ritmos envolventes e precisos na bateria para animar qualquer
+              ocasião.
+            </p>
+          </div>
+          <div class="service-card">
+            <img src="./images/violino.jpg" alt="Violino" />
+            <h3>Violino</h3>
+            <p>
+              Gabriele encanta com seu violino, adicionando elegância e emoção à
+              sua celebração.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="about">
+        <div class="about-content">
+          <div class="about-text">
+            <h2>Sobre Nós</h2>
+            <p>
+              Ismael e Gabriele são irmãos e músicos profissionais apaixonados
+              por criar momentos inesquecíveis através da música. Com anos de
+              experiência em casamentos, eventos corporativos e festas privadas,
+              oferecemos um repertório diversificado e performances de alta
+              qualidade.
+            </p>
+            <p>
+              Nossa missão é tornar seu evento especial com a trilha sonora
+              perfeita, adaptada ao seu gosto e às necessidades da ocasião.
+            </p>
+          </div>
+          <div class="about-image">
+            <img
+              src="./images/together.jpg"
+              alt="Ismael e Gabriele tocando juntos"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Player do YouTube Atualizado -->
+      <section id="youtube-player" class="youtube-player">
+        <h2>Veja nossa Música em Ação</h2>
+        <p>
+          Assista nossa apresentação e tenha um gostinho do que podemos trazer
+          para o seu evento!
+        </p>
+        <div class="video-wrapper video-container">
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/Z5fZBdtgHSY?si=PqDo356bcNShFokU"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </section>
+
+      <section id="testimonials" class="testimonials">
+        <h2>O Que Nossos Clientes Dizem</h2>
+        <div class="testimonial-slider">
+          <div class="testimonial-card">
+            <p>
+              "Tô passando para agradecer tu e o teu mano! Foi incrível!
+              <br /><br />Só elogios pra vocês… todos adoraram. Vocês moram no
+              nosso coração…somos fãs de vocês <br /><br />
+              Muito, muito obrigada pela dedicação e empenho em deixar esse dia
+              lindo e ainda mais especial ❤️❤️❤️ "
+            </p>
+            <p class="author">- Bruna Paim</p>
+          </div>
+          <div class="testimonial-card">
+            <p>
+              "Contratamos para nossa festa de empresa e foi um sucesso
+              absoluto. Profissionais e talentosos!"
+            </p>
+            <p class="author">- Empresa XYZ</p>
+          </div>
+          <div class="testimonial-card">
+            <p>
+              "A performance no violino da Gabriele trouxe lágrimas aos olhos.
+              Simplesmente incrível!"
+            </p>
+            <p class="author">- Ana C.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <h2>Entre em Contato</h2>
+        <form id="contact-form">
+          <input type="text" name="name" placeholder="Seu Nome" required />
+          <input type="email" name="email" placeholder="Seu E-mail" required />
+          <textarea
+            name="message"
+            placeholder="Sua Mensagem"
+            required
+          ></textarea>
+          <button type="submit" class="cta-button">Enviar Mensagem</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        &copy; 2025 Ismael & Gabriele - Músicos para Casamentos e Eventos. Todos
+        os direitos reservados.
+      </p>
+    </footer>
+
+    <!-- Referência ao Arquivo Externo de JavaScript -->
+    <script src="script.js"></script>
+  </body>
+</html>
