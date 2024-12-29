@@ -12,8 +12,15 @@
     <!-- Incluindo o SDK do EmailJS -->
     <script
       type="text/javascript"
-      src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
     ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init({
+          publicKey: "ctxW9xYNaeSb80VmR",
+        });
+      })();
+    </script>
   </head>
   <body>
     <header>
