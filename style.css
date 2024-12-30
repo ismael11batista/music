@@ -140,7 +140,7 @@ nav {
 /* Pétalas Caindo */
 .petal {
   position: absolute;
-  top: -10px;
+  top: -10vh;
   width: 30px;
   height: 30px;
   background: pink;
@@ -148,60 +148,71 @@ nav {
   border-radius: 50%;
   pointer-events: none;
   animation: fall linear infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.petal-content {
+  color: #fff; /* ou qualquer cor que contraste com o fundo da pétala */
+  font-size: 16px; /* ajuste conforme necessário */
+  line-height: 1;
 }
 
 .petal1 {
-  left: 10%;
+  left: 8%;
   width: 20px;
   height: 20px;
   background: #f8c291;
-  animation-duration: 8s;
+  animation-duration: 13s;
   animation-delay: 0s;
 }
-
 .petal2 {
   left: 25%;
   width: 25px;
   height: 25px;
   background: #e77f67;
-  animation-duration: 10s;
+  animation-duration: 16s;
   animation-delay: 2s;
 }
-
 .petal3 {
-  left: 40%;
-  width: 15px;
-  height: 15px;
-  background: #f6b93b;
-  animation-duration: 7s;
-  animation-delay: 4s;
-}
-
-.petal4 {
-  left: 55%;
+  left: 50%;
   width: 20px;
   height: 20px;
-  background: #6ab04c;
-  animation-duration: 9s;
+  background: #f6b93b;
+  animation-duration: 17s;
   animation-delay: 1s;
 }
-
-.petal5 {
-  left: 70%;
+.petal4 {
+  left: 75%;
   width: 18px;
   height: 18px;
   background: #f9ca24;
-  animation-duration: 6s;
+  animation-duration: 16s;
+  animation-delay: 2s;
+}
+.petal5 {
+  left: 92%;
+  width: 25px;
+  height: 25px;
+  background: #f8c291;
+  animation-duration: 11s;
   animation-delay: 3s;
 }
 
 @keyframes fall {
   0% {
-    transform: translateY(0) rotate(0deg);
+    transform: translateY(-10vh) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
     opacity: 0.8;
   }
   100% {
-    transform: translateY(100vh) rotate(360deg);
+    transform: translateY(100vh) translateX(10px);
     opacity: 0;
   }
 }
