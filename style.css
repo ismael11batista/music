@@ -517,3 +517,22 @@ footer {
   border-radius: 10px; /* Cantos arredondados */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
+
+/* Estilo para o botão de contato */
+.contact-button {
+  background-color: #3498db;
+  color: #fff !important;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.contact-button:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}
+
+/* Ajuste o espaçamento do último item da nav para acomodar o botão */
+.nav-links li:last-child {
+  margin-left: 1rem;
+}
