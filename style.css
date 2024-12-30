@@ -164,40 +164,40 @@ nav {
   width: 20px;
   height: 20px;
   background: #f8c291;
-  animation-duration: 13s;
-  animation-delay: 0s;
+  animation-duration: 10s;
+  animation-delay: -1s;
 }
 .petal2 {
   left: 25%;
   width: 25px;
   height: 25px;
   background: #e77f67;
-  animation-duration: 16s;
+  animation-duration: 17s;
   animation-delay: 2s;
 }
 .petal3 {
-  left: 50%;
+  left: 47%;
   width: 20px;
   height: 20px;
   background: #f6b93b;
-  animation-duration: 17s;
-  animation-delay: 1s;
+  animation-duration: 14s;
+  animation-delay: -1s;
 }
 .petal4 {
-  left: 75%;
+  left: 68%;
   width: 18px;
   height: 18px;
   background: #f9ca24;
-  animation-duration: 16s;
+  animation-duration: 10s;
   animation-delay: 2s;
 }
 .petal5 {
-  left: 92%;
+  left: 85%;
   width: 25px;
   height: 25px;
   background: #f8c291;
   animation-duration: 11s;
-  animation-delay: 3s;
+  animation-delay: -2s;
 }
 
 @keyframes fall {
