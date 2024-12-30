@@ -38,6 +38,7 @@ nav {
   font-size: 1.8rem;
   font-weight: 700;
   color: #2980b9;
+  text-decoration: none; /* Adicione esta linha */
 }
 
 .nav-links {
