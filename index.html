@@ -1,193 +1,622 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ismael & Gabriele - Músicos para Casamentos e Eventos</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <!-- Incluindo o SDK do EmailJS -->
-    <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
-    ></script>
-    <script type="text/javascript">
-      (function () {
-        emailjs.init({
-          publicKey: "ctxW9xYNaeSb80VmR",
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ismael &amp; Gabriele - Músicos para Casamentos e Eventos</title>
+  <style>
+    /* Variáveis de cores e configurações gerais */
+    :root {
+      --primary: #2980b9;
+      --secondary: #2c3e50;
+      --accent: #e67e22;
+      --accent-hover: #d35400;
+      --light-bg: #ecf0f1;
+      --white: #ffffff;
+      --font-family: 'Helvetica', sans-serif;
+      --transition-speed: 0.3s;
+      --padding-base: 1rem;
+    }
+    /* Reset Global */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: var(--font-family);
+      line-height: 1.6;
+      color: var(--secondary);
+      background-color: var(--light-bg);
+    }
+    /* Header */
+    header {
+      background: var(--white);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--padding-base);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      align-items: center;
+    }
+    .nav-links li {
+      margin-left: 2rem;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--secondary);
+      font-weight: 500;
+      transition: color var(--transition-speed);
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: var(--primary);
+    }
+    .contact-button {
+      background: var(--primary);
+      color: var(--white) !important;
+      padding: 0.6rem 1.2rem;
+      border-radius: 5px;
+      transition: background var(--transition-speed), transform var(--transition-speed);
+    }
+    .contact-button:hover,
+    .contact-button:focus {
+      background: var(--accent);
+      transform: translateY(-2px);
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .hamburger span {
+      height: 3px;
+      width: 25px;
+      background: var(--secondary);
+      margin-bottom: 5px;
+      border-radius: 5px;
+      transition: all var(--transition-speed);
+    }
+    .hamburger.toggle span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.toggle span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.toggle span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+    /* Seção Hero */
+    .hero {
+      background: url("./images/background.jpg") center/cover no-repeat;
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 60px;
+      color: var(--white);
+      text-align: center;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(44, 62, 80, 0.4);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 1rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .cta-button {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--white);
+      padding: 0.8rem 2rem;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: background var(--transition-speed);
+    }
+    .cta-button:hover,
+    .cta-button:focus {
+      background: var(--accent-hover);
+    }
+    /* Elementos Decorativos */
+    .petal {
+      position: absolute;
+      top: -10vh;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      opacity: 0.8;
+      pointer-events: none;
+      animation: fall linear infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--white);
+      font-size: 16px;
+    }
+    .petal1 { left: 8%; width: 20px; height: 20px; background: #f8c291; animation-duration: 10s; animation-delay: -1s; }
+    .petal2 { left: 25%; width: 25px; height: 25px; background: #e77f67; animation-duration: 17s; animation-delay: 2s; }
+    .petal3 { left: 47%; width: 20px; height: 20px; background: #f6b93b; animation-duration: 14s; animation-delay: -1s; }
+    .petal4 { left: 68%; width: 18px; height: 18px; background: #f9ca24; animation-duration: 10s; animation-delay: 2s; }
+    .petal5 { left: 85%; width: 25px; height: 25px; background: #f8c291; animation-duration: 11s; animation-delay: -2s; }
+    @keyframes fall {
+      0% { transform: translateY(-10vh) translateX(0); opacity: 0; }
+      10%, 90% { opacity: 0.8; }
+      100% { transform: translateY(100vh) translateX(10px); opacity: 0; }
+    }
+    /* Seção Serviços */
+    .services {
+      max-width: 1200px;
+      margin: 6rem auto 4rem;
+      padding: 0 var(--padding-base);
+      text-align: center;
+    }
+    .services h2 {
+      font-size: 2.75rem;
+      margin-bottom: 2rem;
+      color: var(--secondary);
+    }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .service-card {
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+    .service-card img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+    .service-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: var(--primary);
+    }
+    .service-card p {
+      font-size: 1rem;
+      color: var(--secondary);
+    }
+    /* Seção Sobre Nós */
+    .about {
+      background: var(--white);
+      padding: 4rem var(--padding-base);
+    }
+    .about-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .about-text {
+      flex: 1;
+    }
+    .about-text h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--secondary);
+    }
+    .about-text p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: var(--secondary);
+    }
+    .about-image {
+      flex: 1;
+      text-align: center;
+    }
+    .about-image img {
+      width: 90%;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    /* Seção YouTube */
+    .youtube-player {
+      background: var(--light-bg);
+      padding: 4rem var(--padding-base);
+      text-align: center;
+    }
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    /* Seção Depoimentos */
+    .testimonials {
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 0 var(--padding-base);
+      text-align: center;
+    }
+    .testimonials h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: var(--secondary);
+    }
+    .testimonial-slider {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 1rem;
+      scroll-behavior: smooth;
+    }
+    .testimonial-card {
+      flex: 0 0 300px;
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      scroll-snap-align: start;
+    }
+    .testimonial-card p {
+      font-style: italic;
+      color: var(--secondary);
+      margin-bottom: 1.5rem;
+    }
+    .testimonial-card .author {
+      font-weight: 700;
+      color: var(--secondary);
+    }
+    /* Seção Contato */
+    .contact {
+      background: linear-gradient(135deg, var(--white), var(--light-bg));
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem 1rem;
+    }
+    .contact h2 {
+      font-size: 2.75rem;
+      margin-bottom: 2.5rem;
+      color: var(--secondary);
+    }
+    #contact-form {
+      background: var(--white);
+      padding: 2.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      width: 100%;
+      max-width: 600px;
+    }
+    #contact-form input,
+    #contact-form textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #bdc3c7;
+      border-radius: 5px;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      transition: border-color var(--transition-speed);
+      font-family: var(--font-family);
+    }
+    #contact-form input:focus,
+    #contact-form textarea:focus {
+      border-color: var(--primary);
+      outline: none;
+    }
+    #contact-form button {
+      width: 100%;
+      padding: 1rem;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background var(--transition-speed);
+    }
+    #contact-form button:hover,
+    #contact-form button:focus {
+      background: #1f6391;
+    }
+    /* Footer */
+    footer {
+      background: var(--secondary);
+      color: var(--light-bg);
+      text-align: center;
+      padding: 1.5rem var(--padding-base);
+      margin-top: 4rem;
+    }
+    /* Responsividade */
+    @media (max-width: 1024px) {
+      .about-content {
+        flex-direction: column;
+      }
+      .service-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+    }
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: var(--white);
+        height: 100vh;
+        width: 50%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transform: translateX(100%);
+        transition: transform var(--transition-speed);
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .nav-links li {
+        margin: 1.5rem 0;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .testimonial-slider {
+        flex-direction: column;
+        align-items: center;
+      }
+      .testimonial-card {
+        width: 90%;
+      }
+    }
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .cta-button {
+        padding: 0.7rem 1.5rem;
+      }
+      .service-card img {
+        width: 150px;
+        height: 150px;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="#home" class="logo">Ismael &amp; Gabriele</a>
+      <ul class="nav-links">
+        <li><a href="#home">Início</a></li>
+        <li><a href="#services">Nossos Serviços</a></li>
+        <li><a href="#about">Sobre Nós</a></li>
+        <li><a href="#contact" class="contact-button">Entrar em Contato</a></li>
+      </ul>
+      <div class="hamburger" aria-label="Menu" tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <!-- Seção Hero -->
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <h1>Músicos para Seu Evento</h1>
+        <p>Transforme seu casamento, festa ou evento com uma trilha sonora única e inesquecível.</p>
+        <a href="#contact" class="cta-button">Quero um Orçamento</a>
+      </div>
+      <!-- Elementos Decorativos -->
+      <div class="petal petal1"><span>♪</span></div>
+      <div class="petal petal2"><span>♫</span></div>
+      <div class="petal petal3"><span>♩</span></div>
+      <div class="petal petal4"><span>♭</span></div>
+      <div class="petal petal5"><span>𝄞</span></div>
+    </section>
+
+    <section id="services" class="services">
+      <h2>Nossos Serviços</h2>
+      <div class="service-grid">
+        <div class="service-card">
+          <img src="./images/guitar.jpg" alt="Violão e Guitarra" loading="lazy" />
+          <h3>Violão e Guitarra</h3>
+          <p>Harmonia que conecta e transforma cada momento.</p>
+        </div>
+        <div class="service-card">
+          <img src="./images/drums.webp" alt="Bateria" loading="lazy" />
+          <h3>Bateria</h3>
+          <p>Ritmos vibrantes para dar vida à sua celebração.</p>
+        </div>
+        <div class="service-card">
+          <img src="./images/violino.jpg" alt="Violino" loading="lazy" />
+          <h3>Violino</h3>
+          <p>A delicadeza do violino torna cada momento inesquecível.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="about-content">
+        <div class="about-text">
+          <h2>Sobre Nós</h2>
+          <p>Somos Ismael e Gabriele, irmãos que respiram e vivem música.</p>
+          <p>Ismael iniciou sua jornada aos 6 anos, dominando bateria, violão, guitarra e teclado. Sua versatilidade engrandece cada apresentação.</p>
+          <p>Gabriele, virtuose do violino com mais de 8 anos de experiência, complementa nosso som com muita emoção.</p>
+          <p>Nossa missão é transformar seu evento em uma experiência única e memorável.</p>
+        </div>
+        <div class="about-image">
+          <img src="./images/together.jpg" alt="Ismael e Gabriele tocando juntos" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <section id="youtube-player" class="youtube-player">
+      <h2>Veja Nossa Música em Ação</h2>
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/Z5fZBdtgHSY?si=PqDo356bcNShFokU" title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+      <h2>O Que Nossos Clientes Dizem</h2>
+      <div class="testimonial-slider">
+        <div class="testimonial-card">
+          <p>"Tô passando para agradecer tu e o teu mano! Foi incrível!
+            <br /><br />Só elogios pra vocês… todos adoraram. Vocês moram no nosso coração…somos fãs de vocês.
+            <br /><br />Muito obrigada pela dedicação em tornar nosso dia especial ❤️"</p>
+          <p class="author">- Bruna Paim</p>
+        </div>
+        <div class="testimonial-card">
+          <p>"Só para agradecer mais uma vez pela oportunidade de ouvir estes anjos!"</p>
+          <p class="author">- Maristela Spricigo</p>
+        </div>
+        <div class="testimonial-card">
+          <p>"Nossa, que show! Vocês arrasaram. Ainda estou cantarolando as músicas. Muito obrigado por tornar nosso dia tão especial."</p>
+          <p class="author">- Ana Carolina Voigt</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Entre em Contato</h2>
+      <form id="contact-form">
+        <input type="text" name="name" placeholder="Seu Nome" required />
+        <input type="email" name="email" placeholder="Seu E-mail" required />
+        <textarea name="message" placeholder="Sua Mensagem" required></textarea>
+        <button type="submit" class="cta-button">Enviar Mensagem</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Ismael &amp; Gabriele - Músicos para Casamentos e Eventos. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    // Inicializar EmailJS com sua Public Key
+    (function () {
+      emailjs.init("ctxW9xYNaeSb80VmR");
+    })();
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute("href"));
+        if (target) {
+          target.scrollIntoView({
+            behavior: "smooth"
+          });
+        }
+      });
+    });
+
+    // Toggle navigation on mobile
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector(".nav-links");
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+      hamburger.classList.toggle("toggle");
+    });
+
+    // Form submission com EmailJS
+    document.getElementById("contact-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const templateParams = {
+        name: this.name.value,
+        email: this.email.value,
+        message: this.message.value,
+      };
+      emailjs.send("service_brgit2i", "template_cuugplo", templateParams)
+        .then(function (response) {
+          console.log("SUCCESS!", response.status, response.text);
+          alert("Obrigado por sua mensagem! Entraremos em contato em breve.");
+          document.getElementById("contact-form").reset();
+        }, function (error) {
+          console.log("FAILED...", error);
+          alert("Desculpe, ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde.");
         });
-      })();
-    </script>
-  </head>
-  <body>
-    <header>
-      <nav>
-        <a href="#home" class="logo">Ismael & Gabriele</a>
-        <ul class="nav-links">
-          <li><a href="#home">Início</a></li>
-          <li><a href="#services">Nossos Serviços</a></li>
-          <li><a href="#about">Sobre Nós</a></li>
-          <li>
-            <a href="#contact" class="contact-button">Entrar em Contato</a>
-          </li>
-        </ul>
-        <div class="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </nav>
-    </header>
+    });
 
-    <main>
-      <section id="home" class="hero">
-        <div class="hero-content">
-          <h1>Músicos para Seu Evento</h1>
-          <p>
-            Transforme o seu casamento, festa ou evento especial com a trilha
-            sonora que ficará para sempre na memória de todos.
-          </p>
-          <a href="#contact" class="cta-button">Quero um Orçamento</a>
-        </div>
+    // Testimonial slider auto-scroll
+    const testimonialSlider = document.querySelector(".testimonial-slider");
+    let scrollAmount = 0;
+    const scrollStep = 1;
+    const scrollInterval = 50;
 
-        <!-- Pétalas Caindo -->
-        <div class="petal petal1"><span class="petal-content">♪</span></div>
-        <div class="petal petal2"><span class="petal-content">♫</span></div>
-        <div class="petal petal3"><span class="petal-content">♩</span></div>
-        <div class="petal petal4"><span class="petal-content">♭</span></div>
-        <div class="petal petal5"><span class="petal-content">𝄞</span></div>
-      </section>
-
-      <section id="services" class="services">
-        <h2>Nossos Serviços</h2>
-        <div class="service-grid">
-          <div class="service-card">
-            <img src="./images/guitar.jpg" alt="Violão e Guitarra" />
-            <h3>Violão e Guitarra</h3>
-            <p>Harmonia que conecta e transforma cada momento.</p>
-          </div>
-          <div class="service-card">
-            <img src="./images/drums.webp" alt="Bateria" />
-            <h3>Bateria</h3>
-            <p>
-              Ritmos vibrantes e contagiantes que dão vida à sua celebração.
-            </p>
-          </div>
-          <div class="service-card">
-            <img src="./images/violino.jpg" alt="Violino" />
-            <h3>Violino</h3>
-            <p>
-              A delicadeza e o charme do violino tornam qualquer momento
-              inesquecível.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="about" class="about">
-        <div class="about-content">
-          <div class="about-text">
-            <h2>Sobre Nós</h2>
-            <p>
-              Somos Ismael e Gabriele, irmãos que cresceram respirando música.
-            </p>
-            <p>
-              Ismael começou aos 6 anos, aprendendo bateria, violão, guitarra e
-              teclado. Sua versatilidade dá um toque especial a cada
-              apresentação. Já Gabriele é uma virtuose do violino, com mais de 8
-              anos de experiência, incluindo apresentações na Camerata di
-              Venezia.
-            </p>
-            <p>
-              Nossa missão é transformar o seu evento em algo único e
-              inesquecível, criando uma trilha sonora que toque o coração e crie
-              memórias para toda a vida.
-            </p>
-          </div>
-          <div class="about-image">
-            <img
-              src="./images/together.jpg"
-              alt="Ismael e Gabriele tocando juntos"
-            />
-          </div>
-        </div>
-      </section>
-
-      <!-- Player do YouTube Atualizado -->
-      <section id="youtube-player" class="youtube-player">
-        <h2>Veja nossa Música em Ação</h2>
-        <br />
-        <div class="video-wrapper video-container">
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/Z5fZBdtgHSY?si=PqDo356bcNShFokU"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
-        </div>
-      </section>
-
-      <section id="testimonials" class="testimonials">
-        <h2>O Que Nossos Clientes Dizem</h2>
-        <div class="testimonial-slider">
-          <div class="testimonial-card">
-            <p>
-              "Tô passando para agradecer tu e o teu mano! Foi incrível!
-              <br /><br />Só elogios pra vocês… todos adoraram. Vocês moram no
-              nosso coração…somos fãs de vocês <br /><br />
-              Muito, muito obrigada pela dedicação e empenho em deixar esse dia
-              lindo e ainda mais especial ❤️❤️❤️ "
-            </p>
-            <p class="author">- Bruna Paim</p>
-          </div>
-          <div class="testimonial-card">
-            <p>
-              "Só para agradecer mais uma vez pela oportunidade que vocês nos
-              deram de podermos ouvir estes anjos!"
-            </p>
-            <p class="author">- Maristela Spricigo</p>
-          </div>
-          <div class="testimonial-card">
-            <p>
-              "Nossa, que show incrível! Vocês mandaram muito bem. Tô aqui ainda
-              cantarolando as músicas. Valeu demais por fazerem nosso dia tão
-              especial. Vocês são demais!"
-            </p>
-            <p class="author">- Ana Carolina Voigt</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="contact">
-        <h2>Entre em Contato</h2>
-        <form id="contact-form">
-          <input type="text" name="name" placeholder="Seu Nome" required />
-          <input type="email" name="email" placeholder="Seu E-mail" required />
-          <textarea
-            name="message"
-            placeholder="Sua Mensagem"
-            required
-          ></textarea>
-          <button type="submit" class="cta-button">Enviar Mensagem</button>
-        </form>
-      </section>
-    </main>
-
-    <footer>
-      <p>
-        &copy; 2025 Ismael & Gabriele - Músicos para Casamentos e Eventos. Todos
-        os direitos reservados.
-      </p>
-    </footer>
-
-    <!-- Referência ao Arquivo Externo de JavaScript -->
-    <script src="script.js"></script>
-  </body>
+    function autoScroll() {
+      testimonialSlider.scrollLeft += scrollStep;
+      scrollAmount += scrollStep;
+      if (scrollAmount >= testimonialSlider.scrollWidth / 2) {
+        scrollAmount = 0;
+        testimonialSlider.scrollLeft = 0;
+      }
+      setTimeout(autoScroll, scrollInterval);
+    }
+    autoScroll();
+  </script>
+</body>
 </html>
